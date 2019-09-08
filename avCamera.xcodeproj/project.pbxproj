@@ -15,6 +15,7 @@
 		4031CD112325528100E0F714 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4031CD102325528100E0F714 /* main.m */; };
 		4031CD1B2325528100E0F714 /* avCameraTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4031CD1A2325528100E0F714 /* avCameraTests.m */; };
 		4031CD262325528100E0F714 /* avCameraUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4031CD252325528100E0F714 /* avCameraUITests.m */; };
+		4031CD35232554BC00E0F714 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4031CD34232554BC00E0F714 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		4031CD212325528100E0F714 /* avCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = avCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4031CD252325528100E0F714 /* avCameraUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = avCameraUITests.m; sourceTree = "<group>"; };
 		4031CD272325528100E0F714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4031CD34232554BC00E0F714 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4031CD35232554BC00E0F714 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 				4031CD192325528100E0F714 /* avCameraTests */,
 				4031CD242325528100E0F714 /* avCameraUITests */,
 				4031CCFF2325527F00E0F714 /* Products */,
+				4031CD33232554BC00E0F714 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +134,14 @@
 				4031CD272325528100E0F714 /* Info.plist */,
 			);
 			path = avCameraUITests;
+			sourceTree = "<group>";
+		};
+		4031CD33232554BC00E0F714 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4031CD34232554BC00E0F714 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
