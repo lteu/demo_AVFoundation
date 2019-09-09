@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "CameraFocusSquare.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIView *previewView;
@@ -16,6 +16,8 @@
 @property (nonatomic) AVCaptureSession *captureSession;
 @property (nonatomic) AVCapturePhotoOutput *stillImageOutput;
 @property (nonatomic) AVCaptureVideoPreviewLayer *videoPreviewLayer;
+@property (nonatomic) AVCaptureDevice *acd;
+@property (nonatomic) CameraFocusSquare *focusSquare;
 
 @end
 
@@ -33,6 +35,21 @@
     self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
     
     AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+//    [backCamera lockForConfiguration];
+//    backCamera.focusMode = AVCaptureFocusModeContinuousAutoFocus;
+    
+    NSError* err = nil;
+    BOOL lockAcquired = [backCamera lockForConfiguration:&err];
+    
+    if (!lockAcquired) {
+        // log err and handle...
+    } else {
+        // flip on the flash mode
+        backCamera.focusMode = AVCaptureFocusModeContinuousAutoFocus;
+        [backCamera unlockForConfiguration];
+    }
+    
+    
     if (!backCamera) {
         NSLog(@"Unable to access back camera!");
         return;
@@ -50,22 +67,69 @@
     
     self.stillImageOutput = [AVCapturePhotoOutput new];
     
-    
-    self.stillImageOutput = [AVCapturePhotoOutput new];
-    
     if ([self.captureSession canAddInput:input] && [self.captureSession canAddOutput:self.stillImageOutput]) {
         
         [self.captureSession addInput:input];
         [self.captureSession addOutput:self.stillImageOutput];
         [self setupLivePreview];
     }
+    
+    
+    UITapGestureRecognizer *shortTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapToFocus:)];
+    shortTap.numberOfTapsRequired=1;
+    shortTap.numberOfTouchesRequired=1;
+    [self.previewView addGestureRecognizer:shortTap];
     // Setup your camera here...
+    
+    self.acd = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 }
 
+- (void)handleTapToFocus:(UITapGestureRecognizer *)tapGesture
+{
+   
+    if (tapGesture.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint thisFocusPoint = [tapGesture locationInView:self.previewView];
+        CGPoint focusPoint = [self.videoPreviewLayer captureDevicePointOfInterestForPoint:thisFocusPoint];
+
+        if (!self.focusSquare) {
+            self.focusSquare = [[CameraFocusSquare alloc] initWithTouchPoint:thisFocusPoint];
+            [self.previewView addSubview:self.focusSquare];
+            [self.focusSquare setNeedsDisplay];
+        }
+        else {
+            [self.focusSquare updatePoint:thisFocusPoint];
+        }
+        [self.focusSquare animateFocusingAction];
+        
+        
+        
+        if ([self.acd isFocusModeSupported:AVCaptureFocusModeAutoFocus] && [self.acd isFocusPointOfInterestSupported])
+        {
+            if ([self.acd lockForConfiguration:nil])
+            {
+                [self.acd setFocusMode:AVCaptureFocusModeAutoFocus];
+                [self.acd setFocusPointOfInterest:focusPoint];
+
+                
+                 if ([self.acd isExposureModeSupported:AVCaptureExposureModeAutoExpose] && [self.acd isExposurePointOfInterestSupported])
+                 {
+                     [self.acd setExposureMode:AVCaptureExposureModeAutoExpose];
+                     [self.acd setExposurePointOfInterest:focusPoint]; //seems useless	
+                 }
+                
+                [self.acd unlockForConfiguration];
+            }
+        }
+    }
+}
 
 - (void)setupLivePreview {
     
     self.videoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
+    
+//    self.captureSession focus
+    
     if (self.videoPreviewLayer) {
         
         self.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspect;

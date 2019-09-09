@@ -16,6 +16,7 @@
 		4031CD1B2325528100E0F714 /* avCameraTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4031CD1A2325528100E0F714 /* avCameraTests.m */; };
 		4031CD262325528100E0F714 /* avCameraUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4031CD252325528100E0F714 /* avCameraUITests.m */; };
 		4031CD35232554BC00E0F714 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4031CD34232554BC00E0F714 /* AVFoundation.framework */; };
+		406E237523267AB500C2FC06 /* CameraFocusSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 406E237423267AB500C2FC06 /* CameraFocusSquare.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		4031CD252325528100E0F714 /* avCameraUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = avCameraUITests.m; sourceTree = "<group>"; };
 		4031CD272325528100E0F714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4031CD34232554BC00E0F714 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		406E237323267A9300C2FC06 /* CameraFocusSquare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraFocusSquare.h; sourceTree = "<group>"; };
+		406E237423267AB500C2FC06 /* CameraFocusSquare.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraFocusSquare.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 				4031CD0C2325528100E0F714 /* LaunchScreen.storyboard */,
 				4031CD0F2325528100E0F714 /* Info.plist */,
 				4031CD102325528100E0F714 /* main.m */,
+				406E237323267A9300C2FC06 /* CameraFocusSquare.h */,
+				406E237423267AB500C2FC06 /* CameraFocusSquare.m */,
 			);
 			path = avCamera;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				406E237523267AB500C2FC06 /* CameraFocusSquare.m in Sources */,
 				4031CD062325527F00E0F714 /* ViewController.m in Sources */,
 				4031CD112325528100E0F714 /* main.m in Sources */,
 				4031CD032325527F00E0F714 /* AppDelegate.m in Sources */,
