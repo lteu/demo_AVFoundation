@@ -17,6 +17,7 @@
 		4031CD262325528100E0F714 /* avCameraUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4031CD252325528100E0F714 /* avCameraUITests.m */; };
 		4031CD35232554BC00E0F714 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4031CD34232554BC00E0F714 /* AVFoundation.framework */; };
 		406E237523267AB500C2FC06 /* CameraFocusSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 406E237423267AB500C2FC06 /* CameraFocusSquare.m */; };
+		406E237F2327E8C900C2FC06 /* snap.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 406E237E2327E8C900C2FC06 /* snap.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		4031CD34232554BC00E0F714 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		406E237323267A9300C2FC06 /* CameraFocusSquare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraFocusSquare.h; sourceTree = "<group>"; };
 		406E237423267AB500C2FC06 /* CameraFocusSquare.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraFocusSquare.m; sourceTree = "<group>"; };
+		406E237E2327E8C900C2FC06 /* snap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = snap.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				4031CD102325528100E0F714 /* main.m */,
 				406E237323267A9300C2FC06 /* CameraFocusSquare.h */,
 				406E237423267AB500C2FC06 /* CameraFocusSquare.m */,
+				406E237E2327E8C900C2FC06 /* snap.jpg */,
 			);
 			path = avCamera;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4031CD0E2325528100E0F714 /* LaunchScreen.storyboard in Resources */,
+				406E237F2327E8C900C2FC06 /* snap.jpg in Resources */,
 				4031CD0B2325528100E0F714 /* Assets.xcassets in Resources */,
 				4031CD092325527F00E0F714 /* Main.storyboard in Resources */,
 			);

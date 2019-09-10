@@ -79,9 +79,30 @@
     shortTap.numberOfTapsRequired=1;
     shortTap.numberOfTouchesRequired=1;
     [self.previewView addGestureRecognizer:shortTap];
+    
+    UIPinchGestureRecognizer *shortPinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchToZoomRecognizer:)];
+    [self.previewView addGestureRecognizer:shortPinch];
     // Setup your camera here...
     
     self.acd = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+}
+
+-(void) handlePinchToZoomRecognizer:(UIPinchGestureRecognizer*)pinchRecognizer {
+    const CGFloat pinchVelocityDividerFactor = 30.0f;
+    
+    if (pinchRecognizer.state == UIGestureRecognizerStateChanged) {
+        NSError *error = nil;
+        AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        if ([videoDevice lockForConfiguration:&error]) {
+            CGFloat desiredZoomFactor = self.acd.videoZoomFactor + atan2f(pinchRecognizer.velocity, pinchVelocityDividerFactor);
+            // Check if desiredZoomFactor fits required range from 1.0 to activeFormat.videoMaxZoomFactor
+            self.acd.videoZoomFactor = MAX(1.0, MIN(desiredZoomFactor, self.acd.activeFormat.videoMaxZoomFactor));
+            [videoDevice unlockForConfiguration];
+        } else {
+            NSLog(@"error: failed to lock device for pintch-zoom configuration %@", error);
+        }
+    }
+    
 }
 
 - (void)handleTapToFocus:(UITapGestureRecognizer *)tapGesture
